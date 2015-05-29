@@ -29,5 +29,9 @@ test: stop
 	@docker build --rm -t caddyfile -f fixtures/Dockerfile.config fixtures/
 	@docker create --name caddyfile caddyfile true
 	@docker images | grep caddy
+ifdef CIRCLECI
+	@docker run -d --name caddy --volumes-from caddyfile --read-only jumanjiman/caddy -conf /etc/caddy/caddyfile
+else
 	@docker run -d --name caddy --volumes-from caddyfile --read-only --cap-drop all jumanjiman/caddy -conf /etc/caddy/caddyfile
+endif
 	@docker logs caddy | grep '0.0.0.0:2020'
