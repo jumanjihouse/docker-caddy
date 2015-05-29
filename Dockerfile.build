@@ -1,0 +1,19 @@
+FROM alpine:latest
+
+# To build caddy requires go 1.4, which is provided by Edge.
+COPY repositories /etc/apk/repositories
+
+RUN apk upgrade --update --available && \
+    apk add \
+      ca-certificates \
+      git \
+      go \
+    && rm -f /var/cache/apk/*
+
+RUN adduser -D developer
+# https://github.com/golang/go/issues/10210
+#USER developer
+WORKDIR /home/developer
+
+# https://github.com/golang/go/issues/9344#issuecomment-69944514
+RUN GOPATH=/home/developer CGO_ENABLED=0 GOOS=linux go get -a -installsuffix cgo -tags netgo -ldflags '-w' github.com/mholt/caddy

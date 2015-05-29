@@ -1,0 +1,5 @@
+# We need edge to get go >= 1.4 for build.
+# This is used for the builder, not the runtime.
+http://dl-4.alpinelinux.org/alpine/v3.1/main
+http://dl-4.alpinelinux.org/alpine/edge/main
+http://dl-4.alpinelinux.org/alpine/edge/testing

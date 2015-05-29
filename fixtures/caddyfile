@@ -1,0 +1,5 @@
+# https://caddyserver.com/docs/caddyfile
+0.0.0.0:2020
+log stdout
+errors stderr
+redir https://www.google.com

@@ -1,0 +1,12 @@
+FROM alpine:latest
+
+RUN apk upgrade --update --available && \
+    apk add \
+      ca-certificates \
+    && rm -f /var/cache/apk/*
+
+VOLUME ["/etc/caddy"]
+
+COPY caddy /usr/sbin/caddy
+
+ENTRYPOINT ["/usr/sbin/caddy"]
