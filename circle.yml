@@ -1,5 +1,8 @@
 # https://circleci.com/docs/docker
 machine:
+  environment:
+    UPSTREAM_VERSION: master
+    TAG1: ${UPSTREAM_VERSION}-$(date +%Y%m%dT%H%M)-git-${CIRCLE_SHA1:0:7}
   pre:
     - sudo curl -L -o /usr/bin/docker 'http://s3-external-1.amazonaws.com/circle-downloads/docker-1.6.2-circleci'
     - sudo chmod 0755 /usr/bin/docker
@@ -24,7 +27,7 @@ deployment:
     owner: jumanjihouse
     commands:
       - docker login -e ${mail} -u ${user} -p ${pass}
-      - docker tag jumanjiman/caddy jumanjiman/caddy:${CIRCLE_SHA1:0:7}
-      - docker push jumanjiman/caddy:${CIRCLE_SHA1:0:7}
+      - docker tag jumanjiman/caddy jumanjiman/caddy:${TAG1}
+      - docker push jumanjiman/caddy:${TAG1}
       - docker push jumanjiman/caddy:latest
       - docker logout
