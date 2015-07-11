@@ -1,4 +1,6 @@
 # vim: set ts=8 sw=8 ai noet:
+include CADDY_VERSION
+date=$(shell date +%Y%m%dT%H%M)
 
 .PHONY: all
 all: runtime
@@ -35,3 +37,12 @@ else
 	@docker run -d --name caddy --volumes-from caddyfile --read-only --cap-drop all jumanjiman/caddy -conf /etc/caddy/caddyfile
 endif
 	@docker logs caddy | grep '0.0.0.0:2020'
+
+.PHONY: push
+push:
+	TAG1=${CADDY_VERSION}-${date}-git-${CIRCLE_SHA1:0:7}
+	docker login -e ${mail} -u ${user} -p ${pass}
+	docker tag jumanjiman/caddy jumanjiman/caddy:${TAG1}
+	docker push jumanjiman/caddy:${TAG1}
+	docker push jumanjiman/caddy:latest
+	docker logout
