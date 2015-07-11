@@ -1,10 +1,13 @@
 FROM alpine:latest
 
+ENV OPENSSL_VERSION 1.0.2d-r0
+
 RUN apk upgrade --update --available && \
     apk add \
       ca-certificates \
       git \
       go \
+      openssl=${OPENSSL_VERSION} \
     && rm -f /var/cache/apk/*
 
 RUN adduser -D developer
