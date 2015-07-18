@@ -43,7 +43,7 @@ endif
 .PHONY: push
 push:
 	docker tag jumanjiman/caddy jumanjiman/caddy:${TAG1}
-	docker login -e ${mail} -u ${user} -p ${pass}
+	@docker login -e ${mail} -u ${user} -p ${pass}
 	docker push jumanjiman/caddy:${TAG1}
 	docker push jumanjiman/caddy:latest
-	docker logout
+	@docker logout

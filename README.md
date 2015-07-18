@@ -4,11 +4,14 @@ Caddy web server
 [![](https://badge.imagelayers.io/jumanjiman/caddy.svg)](https://imagelayers.io/?images=jumanjiman/caddy:latest 'View image size and layers')&nbsp;
 [![Circle CI](https://circleci.com/gh/jumanjihouse/docker-caddy.png?circle-token=cf57179da67e6644c2d6efee8b4612774a3bd29b)](https://circleci.com/gh/jumanjihouse/docker-caddy/tree/master 'View CI builds')
 
-Project: [https://github.com/jumanjihouse/docker-caddy]
+This project: [https://github.com/jumanjihouse/docker-caddy]
 (https://github.com/jumanjihouse/docker-caddy)
 
 Docker image: [https://registry.hub.docker.com/u/jumanjiman/caddy/]
 (https://registry.hub.docker.com/u/jumanjiman/caddy/)
+
+Upstream Caddy: [https://github.com/mholt/caddy]
+(https://github.com/mholt/caddy)
 
 
 About
@@ -44,7 +47,9 @@ How-to
 
 ### Pull an already-built image
 
-    docker pull jumanjiman/caddy
+    # All tags, where each tag follows the pattern
+    # jumanjiman/caddy:${CADDY_VERSION}-${BUILD_DATE}T${BUILD_TIME}-git-${HASH}
+    docker pull -a jumanjiman/caddy
 
 
 ### Run
