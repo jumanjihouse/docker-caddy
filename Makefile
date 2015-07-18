@@ -1,7 +1,8 @@
 # vim: set ts=8 sw=8 ai noet:
 include CADDY_VERSION
 date=$(shell date +%Y%m%dT%H%M)
-TAG1=${CADDY_VERSION}-${date}-git-${CIRCLE_SHA1:0:7}
+hash=$(shell git rev-parse --short HEAD)
+TAG1=${CADDY_VERSION}-${date}-git-${hash}
 
 .PHONY: all
 all: runtime
@@ -41,8 +42,8 @@ endif
 
 .PHONY: push
 push:
-	docker login -e ${mail} -u ${user} -p ${pass}
 	docker tag jumanjiman/caddy jumanjiman/caddy:${TAG1}
+	docker login -e ${mail} -u ${user} -p ${pass}
 	docker push jumanjiman/caddy:${TAG1}
 	docker push jumanjiman/caddy:latest
 	docker logout

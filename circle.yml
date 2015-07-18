@@ -23,4 +23,5 @@ deployment:
     branch: master
     owner: jumanjihouse
     commands:
+      # Note: Makefile tags the docker image before push.
       - make push

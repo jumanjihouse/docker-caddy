@@ -19,6 +19,8 @@ RUN adduser -D developer
 #USER developer
 WORKDIR /home/developer
 
+# This file is where we define the caddy version.
+# The caddy version becomes part of the docker tag in Makefile.
 COPY CADDY_VERSION /home/developer/
 
 # https://github.com/golang/go/issues/9344#issuecomment-69944514
