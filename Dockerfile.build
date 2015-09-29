@@ -28,7 +28,4 @@ RUN source /home/developer/CADDY_VERSION && \
     go get -d github.com/mholt/caddy && \
     cd /home/developer/src/github.com/mholt/caddy && \
     git checkout ${CADDY_VERSION} && \
-    git config --global user.email "you@example.com" && \
-    git config --global user.name "Your Name" && \
-    git cherry-pick 0ca0d552ebe0740eba62772a289e13c6f8496684 && \
     go build -a -installsuffix cgo -tags netgo -ldflags '-w' -o /home/developer/bin/caddy
