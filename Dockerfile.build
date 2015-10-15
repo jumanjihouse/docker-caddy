@@ -6,12 +6,12 @@ ENV GOPATH /home/developer
 ENV CGO_ENABLED 0
 ENV GOOS linux
 
-RUN echo '@edge http://dl-4.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories
+RUN echo '@community http://dl-4.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories
 RUN apk upgrade --update --available && \
     apk add \
       ca-certificates \
       git \
-      'go@edge>=1.4.3' \
+      'go@community>=1.4.3' \
       "openssl>=${OPENSSL_VERSION}" \
     && rm -f /var/cache/apk/*
 
