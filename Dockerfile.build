@@ -12,7 +12,7 @@ RUN apk upgrade --update --available && \
       ca-certificates \
       git \
       'go@edge>=1.4.3' \
-      openssl=${OPENSSL_VERSION} \
+      "openssl>=${OPENSSL_VERSION}" \
     && rm -f /var/cache/apk/*
 
 RUN adduser -D developer
