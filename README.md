@@ -45,6 +45,14 @@ How-to
 
     make all
 
+The above command builds a `caddybuild` image, which uses
+[caddyext](https://github.com/caddyserver/caddyext)
+to build a static binary. It then copies the static binary
+out of the build image and creates a runtime image, `caddy`.
+`caddyext` makes it easy to add middleware to the static binary.
+
+The runtime image does not have developer tools or source code.
+
 
 ### Pull an already-built image
 
