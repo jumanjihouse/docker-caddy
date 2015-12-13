@@ -21,12 +21,22 @@ About
 This git repo downloads golang source code from
 [https://github.com/mholt/caddy]
 (https://github.com/mholt/caddy)
-and builds a tiny docker image.
+and builds a small docker image.
 
 See [http://blog.gopheracademy.com/caddy-a-look-inside/]
 (http://blog.gopheracademy.com/caddy-a-look-inside/)
 and [https://caddyserver.com/](https://caddyserver.com/)
 to learn about Caddy.
+
+
+### Middleware
+
+The following middleware is installed in the image:
+
+* [caddy-git](https://github.com/abiosoft/caddy-git)
+
+See [`fixtures/caddyfile`](fixtures/caddyfile)
+for an example config used to test this image.
 
 
 License
@@ -52,6 +62,8 @@ out of the build image and creates a runtime image, `caddy`.
 `caddyext` makes it easy to add middleware to the static binary.
 
 The runtime image does not have developer tools or source code.
+The runtime image is based on Alpine, not Scratch, to enable
+middleware that depends on external tools, such as `git`.
 
 
 ### Pull an already-built image

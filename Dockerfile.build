@@ -33,6 +33,7 @@ RUN source /home/developer/CADDY_VERSION && \
     cd /home/developer/src/github.com/mholt/caddy && \
     git checkout ${CADDY_VERSION} && \
     cd /home/developer && \
+    bin/caddyext install git && \
     bin/caddyext build bin/ && \
     mv bin/customCaddy bin/caddy && \
     scanelf -BF '%o#F' bin/caddy | grep '^ET_EXEC$'

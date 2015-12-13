@@ -38,6 +38,8 @@ ifdef CIRCLECI
 else
 	@docker run -d --name caddy --volumes-from caddyfile --read-only --cap-drop all jumanjiman/caddy -conf /etc/caddy/caddyfile
 endif
+	sleep 5
+	@docker logs caddy 2>&1 | grep 'https://github.com/jumanjihouse/docker-caddy.git pulled'
 	@docker logs caddy | grep '0.0.0.0:2020'
 
 .PHONY: push

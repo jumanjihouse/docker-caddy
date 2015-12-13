@@ -2,4 +2,15 @@
 0.0.0.0:2020
 log stdout
 errors stderr
-redir https://www.google.com
+
+# After this line, all other paths are relative to root.
+root /home/caddy
+
+# Render markdown files as html.
+markdown /
+
+# Clone a public repo once/hour.
+git github.com/jumanjihouse/docker-caddy /
+
+# Allow browsing in this dir.
+browse /fixtures
