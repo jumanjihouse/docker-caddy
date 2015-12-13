@@ -6,10 +6,13 @@ RUN apk upgrade --update --available && \
     apk add \
       ca-certificates \
       "openssl>=${OPENSSL_VERSION}" \
+    && adduser -Du 1000 caddy \
     && rm -f /var/cache/apk/*
 
 VOLUME ["/etc/caddy"]
 
 COPY caddy /usr/sbin/caddy
 
+# Run as an unprivileged user.
+USER caddy
 ENTRYPOINT ["/usr/sbin/caddy"]
