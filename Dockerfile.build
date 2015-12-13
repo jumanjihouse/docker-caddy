@@ -13,6 +13,7 @@ RUN apk upgrade --update --available && \
       git \
       'go@community>=1.4.3' \
       "openssl>=${OPENSSL_VERSION}" \
+      scanelf \
     && rm -f /var/cache/apk/*
 
 RUN adduser -D developer
@@ -28,4 +29,5 @@ RUN source /home/developer/CADDY_VERSION && \
     go get -d github.com/mholt/caddy && \
     cd /home/developer/src/github.com/mholt/caddy && \
     git checkout ${CADDY_VERSION} && \
-    go build -a -installsuffix cgo -tags netgo -ldflags '-w' -o /home/developer/bin/caddy
+    go build -a -installsuffix cgo -tags netgo -ldflags '-w' -o /home/developer/bin/caddy && \
+    scanelf -BF '%o#F' bin/caddy | grep '^ET_EXEC$'
