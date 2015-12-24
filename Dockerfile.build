@@ -1,4 +1,4 @@
-FROM alpine:3.2
+FROM alpine:3.3
 
 ENV OPENSSL_VERSION 1.0.2e-r0
 
@@ -6,17 +6,15 @@ ENV GOPATH /home/developer
 ENV CGO_ENABLED 0
 ENV GOOS linux
 
-RUN echo '@community http://dl-4.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories
-RUN apk upgrade --update --available && \
-    apk add \
+RUN apk upgrade --no-cache --available && \
+    apk add --no-cache \
       ca-certificates \
       git \
-      'go@community>=1.4.3' \
+      'go>=1.4.3' \
       "openssl>=${OPENSSL_VERSION}" \
       scanelf \
-    && rm -f /var/cache/apk/*
+    && adduser -D developer
 
-RUN adduser -D developer
 USER developer
 WORKDIR /home/developer
 

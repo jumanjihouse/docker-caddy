@@ -1,14 +1,13 @@
-FROM alpine:3.2
+FROM alpine:3.3
 
 ENV OPENSSL_VERSION 1.0.2e-r0
 
-RUN apk upgrade --update --available && \
-    apk add \
+RUN apk upgrade --no-cache --available && \
+    apk add --no-cache \
       ca-certificates \
       git \
       "openssl>=${OPENSSL_VERSION}" \
-    && adduser -Du 1000 caddy \
-    && rm -f /var/cache/apk/*
+    && adduser -Du 1000 caddy
 
 VOLUME ["/etc/caddy"]
 VOLUME ["/home/caddy"]
