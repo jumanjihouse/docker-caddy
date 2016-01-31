@@ -10,7 +10,7 @@ RUN apk upgrade --no-cache --available && \
     apk add --no-cache \
       ca-certificates \
       git \
-      'go>=1.4.3' \
+      'go>=1.5.3' \
       "openssl>=${OPENSSL_VERSION}" \
       scanelf \
     && adduser -D developer
