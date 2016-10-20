@@ -22,8 +22,3 @@ go get -d ./...
 mkdir /home/developer/bin/
 cd caddy
 ./build.bash /home/developer/bin/caddy
-
-# Check that binary is static.
-cd /home/developer
-file bin/caddy
-scanelf -BF '%o#F' bin/caddy | grep '^ET_EXEC$'
