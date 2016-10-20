@@ -29,9 +29,9 @@ and [https://caddyserver.com/](https://caddyserver.com/)
 to learn about Caddy.
 
 
-### Middleware
+### Plugins
 
-The following middleware is installed in the image:
+The following plugins are installed in the image:
 
 * [caddy-git](https://github.com/abiosoft/caddy-git)
 

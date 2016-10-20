@@ -9,10 +9,13 @@ RUN apk upgrade --no-cache --available && \
       -X http://dl-cdn.alpinelinux.org/alpine/edge/main \
       -X http://dl-cdn.alpinelinux.org/alpine/edge/community \
       -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+      bash \
       ca-certificates \
+      file \
       git \
       'go>=1.7' \
       libressl-dev \
+      musl-dev \
       scanelf \
     && adduser -D developer
 
@@ -22,5 +25,7 @@ WORKDIR /home/developer
 # This file is where we define the caddy version.
 # The caddy version becomes part of the docker tag in Makefile.
 COPY CADDY_VERSION /home/developer/
+COPY plugins.patch /home/developer/
+COPY static.patch /home/developer/
 COPY compile.sh /home/developer/
 RUN /home/developer/compile.sh

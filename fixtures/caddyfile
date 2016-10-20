@@ -10,7 +10,7 @@ root /home/caddy
 markdown /
 
 # Clone a public repo once/hour.
-git github.com/jumanjihouse/docker-caddy /
+git github.com/jumanjihouse/docker-caddy /home/caddy/docker-caddy
 
 # Allow browsing in this dir.
 browse /fixtures

@@ -33,6 +33,7 @@ test: stop
 	@docker build --rm -t caddyfile -f fixtures/Dockerfile.config fixtures/
 	@docker create --name caddyfile caddyfile true
 	@docker images | grep caddy
+	@docker run --rm -t --entrypoint=caddy jumanjiman/caddy -plugins | grep http.git
 ifdef CIRCLECI
 	@docker run -d --name caddy --volumes-from caddyfile --read-only jumanjiman/caddy -conf /etc/caddy/caddyfile
 else
