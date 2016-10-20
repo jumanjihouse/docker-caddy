@@ -1,7 +1,9 @@
 Caddy web server
 ================
 
-[![Image Size](https://img.shields.io/imagelayers/image-size/jumanjiman/caddy/latest.svg)](https://imagelayers.io/?images=jumanjiman/caddy:latest 'View image size and layers')&nbsp;
+[![Download size](https://images.microbadger.com/badges/image/jumanjiman/caddy.svg)](http://microbadger.com/images/jumanjiman/caddy "View on microbadger.com")
+[![Version](https://images.microbadger.com/badges/version/jumanjiman/caddy.svg)](http://microbadger.com/images/jumanjiman/caddy "View on microbadger.com")
+[![Source code](https://images.microbadger.com/badges/commit/jumanjiman/caddy.svg)](http://microbadger.com/images/jumanjiman/caddy "View on microbadger.com")
 [![Docker Registry](https://img.shields.io/docker/pulls/jumanjiman/caddy.svg)](https://registry.hub.docker.com/u/jumanjiman/caddy)&nbsp;
 [![Circle CI](https://circleci.com/gh/jumanjihouse/docker-caddy.png?circle-token=cf57179da67e6644c2d6efee8b4612774a3bd29b)](https://circleci.com/gh/jumanjihouse/docker-caddy/tree/master 'View CI builds')
 
@@ -51,7 +53,7 @@ How-to
 
 ### Build
 
-:warning: Build requires Docker 1.6.0 or later (for `docker build -f <dockerfile>`).
+:warning: Build requires Docker 1.9.0 or later (for docker build args).
 
     make all
 
@@ -71,6 +73,24 @@ middleware that depends on external tools, such as `git`.
     # All tags, where each tag follows the pattern
     # jumanjiman/caddy:${CADDY_VERSION}-${BUILD_DATE}T${BUILD_TIME}-git-${HASH}
     docker pull -a jumanjiman/caddy
+
+
+### Labels
+
+Each built image has labels that generally follow http://label-schema.org/
+
+We add a label, `ci-build-url`, that is not currently part of the schema.
+This extra label provides a permanent link to the CI build for the image.
+
+View the ci-build-url label on a built image:
+
+    docker inspect \
+      -f '{{ index .Config.Labels "io.github.jumanjiman.ci-build-url" }}' \
+      jumanjiman/caddy
+
+Query all the labels inside a built image:
+
+    docker inspect jumanjiman/caddy | jq -M '.[].Config.Labels'
 
 
 ### Run

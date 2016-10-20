@@ -25,7 +25,14 @@ caddy:
 
 .PHONY: runtime
 runtime: caddy
-	@docker build -t jumanjiman/caddy -f Dockerfile.runtime .
+	@docker build \
+		-t jumanjiman/caddy \
+		-f Dockerfile.runtime \
+		--build-arg CI_BUILD_URL=${CIRCLE_BUILD_URL} \
+		--build-arg VCS_REF=${hash} \
+		--build-arg BUILD_DATE=${date} \
+		--build-arg VERSION=${CADDY_VERSION} \
+		.
 	@docker images | grep caddy
 
 .PHONY: test
@@ -35,6 +42,9 @@ test: stop
 	@docker images | grep caddy
 	@docker run --rm -t --entrypoint=caddy jumanjiman/caddy -plugins | grep http.git
 ifdef CIRCLECI
+	@docker inspect \
+		-f '{{ index .Config.Labels "io.github.jumanjiman.ci-build-url" }}' \
+		jumanjiman/caddy | grep circleci.com
 	@docker run -d --name caddy --volumes-from caddyfile --read-only jumanjiman/caddy -conf /etc/caddy/caddyfile
 else
 	@docker run -d --name caddy --volumes-from caddyfile --read-only --cap-drop all jumanjiman/caddy -conf /etc/caddy/caddyfile
