@@ -1,5 +1,5 @@
 # vim: set ts=8 sw=8 ai noet:
-include CADDY_VERSION
+include builder/CADDY_VERSION
 date=$(shell date +%Y%m%dT%H%M)
 hash=$(shell git rev-parse --short HEAD)
 TAG1=${CADDY_VERSION}-${date}-git-${hash}
@@ -19,7 +19,7 @@ stop:
 	@docker rm -f caddyfile || :
 
 caddy:
-	@docker build -t caddybuild -f Dockerfile.build .
+	@docker build -t caddybuild builder/
 	@docker create --name caddybuild caddybuild true
 	@docker cp caddybuild:/home/developer/bin/caddy .
 
