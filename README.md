@@ -36,6 +36,7 @@ to learn about Caddy.
 The following plugins are installed in the image:
 
 * [caddy-git](https://github.com/abiosoft/caddy-git)
+* [caddy-upload](https://github.com/wmark/caddy.upload)
 
 See [`fixtures/caddyfile`](fixtures/caddyfile)
 for an example config used to test this image.

@@ -52,6 +52,8 @@ endif
 	sleep 5
 	@docker logs caddy 2>&1 | grep 'https://github.com/jumanjihouse/docker-caddy.git pulled'
 	@docker logs caddy | grep '0.0.0.0:2020'
+	bats test/upload.bats
+
 
 .PHONY: push
 push:
