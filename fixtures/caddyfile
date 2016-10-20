@@ -9,6 +9,11 @@ root /home/caddy
 # Render markdown files as html.
 markdown /
 
+upload /uploads {
+  yes_without_tls
+  to "/home/caddy"
+}
+
 # Clone a public repo once/hour.
 git github.com/jumanjihouse/docker-caddy /home/caddy/docker-caddy
 

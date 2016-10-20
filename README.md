@@ -36,6 +36,7 @@ to learn about Caddy.
 The following plugins are installed in the image:
 
 * [caddy-git](https://github.com/abiosoft/caddy-git)
+* [caddy-upload](https://github.com/wmark/caddy.upload)
 
 See [`fixtures/caddyfile`](fixtures/caddyfile)
 for an example config used to test this image.
@@ -66,6 +67,12 @@ out of the build image and creates a runtime image, `caddy`.
 The runtime image does not have developer tools or source code.
 The runtime image is based on Alpine, not Scratch, to enable
 middleware that depends on external tools, such as `git`.
+
+
+### Test
+
+We use circleci to build, test, and publish the image to Docker hub.
+We use [BATS](https://github.com/sstephenson/bats) to run the test harness.
 
 
 ### Pull an already-built image
