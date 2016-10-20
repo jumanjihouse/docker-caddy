@@ -68,6 +68,12 @@ The runtime image is based on Alpine, not Scratch, to enable
 middleware that depends on external tools, such as `git`.
 
 
+### Test
+
+We use circleci to build, test, and publish the image to Docker hub.
+We use [BATS](https://github.com/sstephenson/bats) to run the test harness.
+
+
 ### Pull an already-built image
 
     # All tags, where each tag follows the pattern
