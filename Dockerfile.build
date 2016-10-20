@@ -22,17 +22,5 @@ WORKDIR /home/developer
 # This file is where we define the caddy version.
 # The caddy version becomes part of the docker tag in Makefile.
 COPY CADDY_VERSION /home/developer/
-
-# https://github.com/golang/go/issues/9344#issuecomment-69944514
-RUN source /home/developer/CADDY_VERSION && \
-    go get -d github.com/caddyserver/caddyext && \
-    cd /home/developer/src/github.com/caddyserver/caddyext && \
-    go build -a -installsuffix cgo -tags netgo -ldflags '-w' -o /home/developer/bin/caddyext && \
-    go get -d github.com/mholt/caddy && \
-    cd /home/developer/src/github.com/mholt/caddy && \
-    git checkout ${CADDY_VERSION} && \
-    cd /home/developer && \
-    bin/caddyext install git && \
-    bin/caddyext build bin/ && \
-    mv bin/customCaddy bin/caddy && \
-    scanelf -BF '%o#F' bin/caddy | grep '^ET_EXEC$'
+COPY compile.sh /home/developer/
+RUN /home/developer/compile.sh
