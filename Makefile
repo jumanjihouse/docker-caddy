@@ -38,7 +38,6 @@ runtime: caddy
 test: stop
 	@docker build --rm -t caddyfile -f fixtures/Dockerfile.config fixtures/
 	@docker create --name caddyfile caddyfile true
-	@docker images | grep caddy
 ifdef CIRCLECI
 	@docker inspect \
 		-f '{{ index .Config.Labels "io.github.jumanjiman.ci-build-url" }}' \
@@ -48,7 +47,6 @@ else
 	@docker run -d --name caddy --volumes-from caddyfile --read-only --cap-drop all jumanjiman/caddy -conf /etc/caddy/caddyfile
 endif
 	sleep 5
-	@docker logs caddy | grep '0.0.0.0:2020'
 	bats test/*.bats
 
 
