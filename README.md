@@ -58,15 +58,13 @@ How-to
 
     make all
 
-The above command builds a `caddybuild` image, which uses
-[caddyext](https://github.com/caddyserver/caddyext)
-to build a static binary. It then copies the static binary
+The above command builds a `caddybuild` image, which builds
+a static binary. It then copies the static binary
 out of the build image and creates a runtime image, `caddy`.
-`caddyext` makes it easy to add middleware to the static binary.
 
 The runtime image does not have developer tools or source code.
 The runtime image is based on Alpine, not Scratch, to enable
-middleware that depends on external tools, such as `git`.
+plugins that depend on external tools, such as `git`.
 
 
 ### Test
@@ -82,7 +80,7 @@ We use [BATS](https://github.com/sstephenson/bats) to run the test harness.
     docker pull -a jumanjiman/caddy
 
 
-### Labels
+### View labels
 
 Each built image has labels that generally follow http://label-schema.org/
 
