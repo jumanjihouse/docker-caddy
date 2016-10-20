@@ -1,12 +1,11 @@
-FROM alpine:3.3
-
-ENV OPENSSL_VERSION 1.0.2e-r0
+FROM alpine:3.4
 
 RUN apk upgrade --no-cache --available && \
     apk add --no-cache \
+      -X http://dl-cdn.alpinelinux.org/alpine/edge/main \
       ca-certificates \
       git \
-      "openssl>=${OPENSSL_VERSION}" \
+      libressl \
     && adduser -Du 1000 caddy
 
 VOLUME ["/etc/caddy"]
