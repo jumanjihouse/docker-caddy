@@ -72,6 +72,19 @@ plugins that depend on external tools, such as `git`.
 We use circleci to build, test, and publish the image to Docker hub.
 We use [BATS](https://github.com/sstephenson/bats) to run the test harness.
 
+Output of `make test` resembles:
+
+    ✓ caddy image exists
+    ✓ caddy is running on the test port
+    ✓ git plugin is installed
+    ✓ git plugin works
+    ✓ caddy binary is stripped
+    ✓ caddy binary is statically compiled
+    ✓ upload plugin is present
+    ✓ upload works
+
+    8 tests, 0 failures
+
 
 ### Pull an already-built image
 
