@@ -11,7 +11,7 @@ LABEL \
     io.github.jumanjiman.build-date=$BUILD_DATE \
     io.github.jumanjiman.vcs-ref=$VCS_REF \
     io.github.jumanjiman.license="Apache License 2.0" \
-    io.github.jumanjiman.docker.dockerfile="/Dockerfile.runtime" \
+    io.github.jumanjiman.docker.dockerfile="/runtime/Dockerfile" \
     io.github.jumanjiman.vcs-type="Git" \
     io.github.jumanjiman.vcs-url="https://github.com/jumanjihouse/docker-caddy.git"
 

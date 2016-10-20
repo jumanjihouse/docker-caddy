@@ -21,18 +21,17 @@ stop:
 caddy:
 	@docker build -t caddybuild builder/
 	@docker create --name caddybuild caddybuild true
-	@docker cp caddybuild:/home/developer/bin/caddy .
+	@docker cp caddybuild:/home/developer/bin/caddy runtime/
 
 .PHONY: runtime
 runtime: caddy
 	@docker build \
 		-t jumanjiman/caddy \
-		-f Dockerfile.runtime \
 		--build-arg CI_BUILD_URL=${CIRCLE_BUILD_URL} \
 		--build-arg VCS_REF=${hash} \
 		--build-arg BUILD_DATE=${date} \
 		--build-arg VERSION=${CADDY_VERSION} \
-		.
+		runtime/
 	@docker images | grep caddy
 
 .PHONY: test
