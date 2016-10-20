@@ -1,6 +1,4 @@
-FROM alpine:3.3
-
-ENV OPENSSL_VERSION 1.0.2e-r0
+FROM alpine:3.4
 
 ENV GOPATH /home/developer
 ENV CGO_ENABLED 0
@@ -8,10 +6,16 @@ ENV GOOS linux
 
 RUN apk upgrade --no-cache --available && \
     apk add --no-cache \
+      -X http://dl-cdn.alpinelinux.org/alpine/edge/main \
+      -X http://dl-cdn.alpinelinux.org/alpine/edge/community \
+      -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+      bash \
       ca-certificates \
+      file \
       git \
-      'go>=1.4.3' \
-      "openssl>=${OPENSSL_VERSION}" \
+      'go>=1.7' \
+      libressl-dev \
+      musl-dev \
       scanelf \
     && adduser -D developer
 
@@ -21,17 +25,7 @@ WORKDIR /home/developer
 # This file is where we define the caddy version.
 # The caddy version becomes part of the docker tag in Makefile.
 COPY CADDY_VERSION /home/developer/
-
-# https://github.com/golang/go/issues/9344#issuecomment-69944514
-RUN source /home/developer/CADDY_VERSION && \
-    go get -d github.com/caddyserver/caddyext && \
-    cd /home/developer/src/github.com/caddyserver/caddyext && \
-    go build -a -installsuffix cgo -tags netgo -ldflags '-w' -o /home/developer/bin/caddyext && \
-    go get -d github.com/mholt/caddy && \
-    cd /home/developer/src/github.com/mholt/caddy && \
-    git checkout ${CADDY_VERSION} && \
-    cd /home/developer && \
-    bin/caddyext install git && \
-    bin/caddyext build bin/ && \
-    mv bin/customCaddy bin/caddy && \
-    scanelf -BF '%o#F' bin/caddy | grep '^ET_EXEC$'
+COPY plugins.patch /home/developer/
+COPY static.patch /home/developer/
+COPY compile.sh /home/developer/
+RUN /home/developer/compile.sh
