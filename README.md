@@ -78,12 +78,19 @@ Output of `make test` resembles:
     ✓ caddy is running on the test port
     ✓ git plugin is installed
     ✓ git plugin works
+    - securityheaders.io shows A+ (skipped: define HAS_INBOUND_PORT_80 in test/env.bash to run this test)
     ✓ caddy binary is stripped
     ✓ caddy binary is statically compiled
     ✓ upload plugin is present
     ✓ upload works
 
-    8 tests, 0 failures
+    9 tests, 0 failures, 1 skipped
+
+The securityheaders.io test requires inbound access from the internet to port 80.
+If you have inbound access and want to run the securityheaders.io test,
+create `test/env.bash` like this:
+
+    HAS_INBOUND_PORT_80=true
 
 
 ### Pull an already-built image

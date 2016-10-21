@@ -1,3 +1,4 @@
 *~
 *.swp
 caddy
+test/env.bash
