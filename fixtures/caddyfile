@@ -19,3 +19,46 @@ git github.com/jumanjihouse/docker-caddy /home/caddy/docker-caddy
 
 # Allow browsing in this dir.
 browse /fixtures
+
+# Headers for all paths to demonstrate reasonable safety.
+# This fixture does not use TLS, so we omit recommended headers for https.
+# https://caddyserver.com/docs/header
+header / {
+  # CSP and a browser that supports it (http://caniuse.com/#feat=contentsecuritypolicy),
+  # tell the browser that it can only download content from the domains we explicitly allow
+  # https://scotthelme.co.uk/content-security-policy-an-introduction/
+  # http://www.html5rocks.com/en/tutorials/security/content-security-policy/
+  # https://www.owasp.org/index.php/Content_Security_Policy
+  # https://report-uri.io/home/generate
+  # https://csp-evaluator.withgoogle.com/
+  Content-Security-Policy "default-src 'self'; object-src 'none'; block-all-mixed-content; reflected-xss block;"
+
+  # Don't allow the browser to render our pages inside a frame or iframe
+  # thus avoid clickjacking http://en.wikipedia.org/wiki/Clickjacking
+  # https://scotthelme.co.uk/hardening-your-http-response-headers/#x-frame-options
+  # https://developer.mozilla.org/en-US/docs/HTTP/X-Frame-Options
+  X-Frame-Options "SAMEORIGIN"
+
+  # Enable the XSS filter built into most recent web browsers.
+  # It's usually enabled by default anyway, but this header
+  # re-enables the filter if it was disabled by the user.
+  # https://scotthelme.co.uk/hardening-your-http-response-headers/#x-xss-protection
+  # https://www.owasp.org/index.php/List_of_useful_HTTP_headers
+  X-Xss-Protection "1; mode=block"
+
+  # Prevent Google Chrome and Internet Explorer from trying
+  # to mime-sniff the content-type of a response away from
+  # the one being declared by the server.
+  # It reduces exposure to drive-by downloads and the risks
+  # of user uploaded content that, with clever naming,
+  # could be treated as a different content-type, like an executable.
+  # https://scotthelme.co.uk/hardening-your-http-response-headers/#x-content-type-options
+  # https://www.owasp.org/index.php/List_of_useful_HTTP_headers
+  # IE > 8 http://blogs.msdn.com/b/ie/archive/2008/09/02/ie8-security-part-vi-beta-2-update.aspx
+  # http://msdn.microsoft.com/en-us/library/ie/gg622941(v=vs.85).aspx
+  # 'soon' on Firefox https://bugzilla.mozilla.org/show_bug.cgi?id=471020
+  X-Content-Type-Options "nosniff"
+
+  # Do not disclose which server we are.
+  -Server
+}

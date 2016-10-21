@@ -36,6 +36,7 @@ runtime: caddy
 
 .PHONY: test
 test: stop
+	@touch test/env.bash
 	@docker build --rm -t caddyfile -f fixtures/Dockerfile.config fixtures/
 	@docker create --name caddyfile caddyfile true
 ifdef CIRCLECI
@@ -46,12 +47,14 @@ ifdef CIRCLECI
 		--name caddy \
 		--volumes-from caddyfile \
 		--read-only \
+		-p 80:2020 \
 		jumanjiman/caddy -conf /etc/caddy/caddyfile
 else
 	@docker run -d \
 		--name caddy \
 		--volumes-from caddyfile \
 		--read-only \
+		-p 80:2020 \
 		--cap-drop all \
 		jumanjiman/caddy -conf /etc/caddy/caddyfile
 endif

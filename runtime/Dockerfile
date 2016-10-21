@@ -23,6 +23,8 @@ RUN apk upgrade --no-cache --available && \
       libressl \
     && adduser -Du 1000 caddy
 
+RUN echo "hello world" > /home/caddy/index.html
+
 VOLUME ["/etc/caddy"]
 VOLUME ["/home/caddy"]
 
