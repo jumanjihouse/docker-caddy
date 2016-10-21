@@ -4,7 +4,7 @@ Caddy web server
 [![Download size](https://images.microbadger.com/badges/image/jumanjiman/caddy.svg)](http://microbadger.com/images/jumanjiman/caddy "View on microbadger.com")
 [![Version](https://images.microbadger.com/badges/version/jumanjiman/caddy.svg)](http://microbadger.com/images/jumanjiman/caddy "View on microbadger.com")
 [![Source code](https://images.microbadger.com/badges/commit/jumanjiman/caddy.svg)](http://microbadger.com/images/jumanjiman/caddy "View on microbadger.com")
-[![Docker Registry](https://img.shields.io/docker/pulls/jumanjiman/caddy.svg)](https://registry.hub.docker.com/u/jumanjiman/caddy)&nbsp;
+[![Docker Registry](https://img.shields.io/docker/pulls/jumanjiman/caddy.svg)](https://registry.hub.docker.com/u/jumanjiman/caddy/)&nbsp;
 [![Circle CI](https://circleci.com/gh/jumanjihouse/docker-caddy.png?circle-token=cf57179da67e6644c2d6efee8b4612774a3bd29b)](https://circleci.com/gh/jumanjihouse/docker-caddy/tree/master 'View CI builds')
 
 This project: [https://github.com/jumanjihouse/docker-caddy]
@@ -72,12 +72,25 @@ plugins that depend on external tools, such as `git`.
 We use circleci to build, test, and publish the image to Docker hub.
 We use [BATS](https://github.com/sstephenson/bats) to run the test harness.
 
+Output of `make test` resembles:
+
+    ✓ caddy image exists
+    ✓ caddy is running on the test port
+    ✓ git plugin is installed
+    ✓ git plugin works
+    ✓ caddy binary is stripped
+    ✓ caddy binary is statically compiled
+    ✓ upload plugin is present
+    ✓ upload works
+
+    8 tests, 0 failures
+
 
 ### Pull an already-built image
 
-    # All tags, where each tag follows the pattern
+    # Note: build tags follow the pattern
     # jumanjiman/caddy:${CADDY_VERSION}-${BUILD_DATE}T${BUILD_TIME}-git-${HASH}
-    docker pull -a jumanjiman/caddy
+    docker pull jumanjiman/caddy
 
 
 ### View labels
