@@ -42,9 +42,18 @@ ifdef CIRCLECI
 	@docker inspect \
 		-f '{{ index .Config.Labels "io.github.jumanjiman.ci-build-url" }}' \
 		jumanjiman/caddy | grep circleci.com
-	@docker run -d --name caddy --volumes-from caddyfile --read-only jumanjiman/caddy -conf /etc/caddy/caddyfile
+	@docker run -d \
+		--name caddy \
+		--volumes-from caddyfile \
+		--read-only \
+		jumanjiman/caddy -conf /etc/caddy/caddyfile
 else
-	@docker run -d --name caddy --volumes-from caddyfile --read-only --cap-drop all jumanjiman/caddy -conf /etc/caddy/caddyfile
+	@docker run -d \
+		--name caddy \
+		--volumes-from caddyfile \
+		--read-only \
+		--cap-drop all \
+		jumanjiman/caddy -conf /etc/caddy/caddyfile
 endif
 	sleep 5
 	bats test/*.bats
