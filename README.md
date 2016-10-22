@@ -88,6 +88,11 @@ Output of `make test` resembles:
 
     11 tests, 0 failures, 1 skipped
 
+The test harness uses an example caddyfile at [`fixtures/caddyfile`](fixtures/caddyfile)
+to demonstrate ways to secure a Caddy-based site according to
+good industry practices.
+The test harness does not use TLS at the moment.
+
 The securityheaders.io test requires inbound access from the internet to port 80.
 If you have inbound access and want to run the securityheaders.io test,
 create `test/env.bash` like this:
