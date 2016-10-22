@@ -83,8 +83,10 @@ Output of `make test` resembles:
     ✓ caddy binary is statically compiled
     ✓ upload plugin is present
     ✓ upload works
+    ✓ move works
+    ✓ head is forbidden
 
-    9 tests, 0 failures, 1 skipped
+    11 tests, 0 failures, 1 skipped
 
 The securityheaders.io test requires inbound access from the internet to port 80.
 If you have inbound access and want to run the securityheaders.io test,
