@@ -40,9 +40,6 @@ test: stop
 	@docker build --rm -t caddyfile -f fixtures/Dockerfile.config fixtures/
 	@docker create --name caddyfile caddyfile true
 ifdef CIRCLECI
-	@docker inspect \
-		-f '{{ index .Config.Labels "io.github.jumanjiman.ci-build-url" }}' \
-		jumanjiman/caddy | grep circleci.com
 	@docker run -d \
 		--name caddy \
 		--volumes-from caddyfile \
