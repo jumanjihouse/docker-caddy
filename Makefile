@@ -20,7 +20,8 @@ stop:
 
 caddy:
 	@docker build -t caddybuild builder/
-	@docker create --name caddybuild caddybuild true
+	@docker rm -f caddybuild || :
+	@docker run --name caddybuild caddybuild /home/developer/compile.sh
 	@docker cp caddybuild:/home/developer/bin/caddy runtime/
 
 .PHONY: runtime

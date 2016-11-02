@@ -25,4 +25,3 @@ WORKDIR /home/developer
 # This file is where we define the caddy version.
 # The caddy version becomes part of the docker tag in Makefile.
 COPY . /home/developer/
-RUN /home/developer/compile.sh

@@ -16,6 +16,9 @@ dependencies:
     - if [[ ! -e ~/deps/bats_v${BATS_VER}.tar.gz ]]; then mkdir -p ~/deps; curl -sSL -o ~/deps/bats_v${BATS_VER}.tar.gz https://github.com/sstephenson/bats/archive/v${BATS_VER}.tar.gz; fi
     - tar -xf ~/deps/bats_v${BATS_VER}.tar.gz
     - sudo bats-${BATS_VER}/install.sh /usr/local
+    # We also need the scanelf utility.
+    - sudo apt-get update
+    - sudo apt-get install -qq pax-utils
   override:
     - docker info
     - docker version
