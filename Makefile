@@ -8,24 +8,26 @@ TAG1=${CADDY_VERSION}-${date}-git-${hash}
 all: runtime
 
 .PHONY: clean
-clean:
-	@rm -f caddy || :
+clean: stop
+	@rm -f runtime/caddy || :
 	@docker rm -f caddybuild || :
 	@docker rmi -f caddybuild || :
+	@docker rmi -f caddyfile || :
+	@docker rmi -f jumanjiman/caddy || :
 
 .PHONY: stop
 stop:
 	@docker rm -f caddy || :
 	@docker rm -f caddyfile || :
 
-caddy:
+runtime/caddy:
 	@docker build -t caddybuild builder/
 	@docker rm -f caddybuild || :
 	@docker run --name caddybuild caddybuild /home/developer/compile.sh
 	@docker cp caddybuild:/home/developer/bin/caddy runtime/
 
 .PHONY: runtime
-runtime: caddy
+runtime: runtime/caddy
 	@docker build \
 		-t jumanjiman/caddy \
 		--build-arg CI_BUILD_URL=${CIRCLE_BUILD_URL} \
