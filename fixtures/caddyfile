@@ -1,7 +1,9 @@
 # https://caddyserver.com/docs/caddyfile
 0.0.0.0:2020
-log stdout
 errors stderr
+
+# This directive supports https://caddyserver.com/docs/placeholders
+log / stdout "{remote} - [{when}] \"{method} {uri} {proto}\" {status} {size} {latency} {request}"
 
 # After this line, all other paths are relative to root.
 root /home/caddy
