@@ -78,6 +78,7 @@ Output of `make test` resembles:
     ✓ caddy is running on the test port
     ✓ git plugin is installed
     ✓ git plugin works
+    ✓ can browse docker-caddy path
     - securityheaders.io shows A+ (skipped: define HAS_INBOUND_PORT_80 in test/env.bash to run this test)
     - ci-build-url label is present (skipped: This test only runs on CircleCI)
     ✓ file command is available
@@ -89,7 +90,7 @@ Output of `make test` resembles:
     ✓ move works
     ✓ head is forbidden
 
-    14 tests, 0 failures, 2 skipped
+    15 tests, 0 failures, 2 skipped
 
 The test harness uses an example caddyfile at [`fixtures/caddyfile`](fixtures/caddyfile)
 to demonstrate ways to secure a Caddy-based site according to

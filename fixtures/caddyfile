@@ -46,7 +46,7 @@ rewrite {
 git github.com/jumanjihouse/docker-caddy /home/caddy/docker-caddy
 
 # Allow browsing in this dir.
-browse /fixtures
+browse /docker-caddy
 
 # Headers for all paths to demonstrate reasonable safety.
 # This fixture does not use TLS, so we omit recommended headers for https.
