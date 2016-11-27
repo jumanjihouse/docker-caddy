@@ -25,3 +25,25 @@ setup() {
   run docker-compose run --rm curl --fail -sS --head http://192.168.254.254:2020/ 2>&1
   [[ $output =~ 405 ]]
 }
+
+@test "authenticated upload works" {
+  KEYID="zween"
+  SECRET="upload"
+  TIMESTAMP="$(date --utc +%s)"
+  TOKEN="ABC"
+
+  SIGNATURE="$(printf "${TIMESTAMP}${TOKEN}" |
+    openssl dgst -binary -sha256 -hmac "${SECRET}" |
+    openssl enc -base64)"
+
+  run docker-compose run --rm curl --fail -sS \
+    --header "Timestamp: \"${TIMESTAMP}\"" \
+    --header "Token: \"${TOKEN}\"" \
+    --header "Authorization: Signature keyId=\"${KEYID}\",signature=\"${SIGNATURE}\"" \
+    --upload-file /etc/resolv.conf \
+    http://192.168.254.254:2020/authenticated_uploads/myresolv
+
+  run docker-compose run --rm curl --fail -sS -o /tmp/myresolv http://192.168.254.254:2020/myresolv
+  run cmp /tmp/myresolv /etc/resolv.conf
+  [[ $status -eq 0 ]]
+}

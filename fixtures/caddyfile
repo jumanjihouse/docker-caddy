@@ -44,6 +44,29 @@ rewrite /uploads {
   to /forbidden
 }
 
+upload /authenticated_uploads {
+  yes_without_tls
+  to "/home/caddy"
+
+  # echo -n upload   | openssl enc -base64
+  # echo    dXBsb2Fk | openssl enc -base64 -d
+  hmac_keys_in zween=dXBsb2Fk
+
+  timestamp_tolerance 3
+}
+
+# Allow /authenticated_uploads to use the verbs it needs.
+rewrite /authenticated_uploads {
+  if {method} not GET
+  if {method} not PUT
+  if {method} not POST
+  if {method} not MOVE
+  if {method} not DELETE
+
+  if_op and
+  to /forbidden
+}
+
 # All other URLs are only allowed to GET.
 #
 # Use https://www.htbridge.com/websec/
@@ -51,6 +74,7 @@ rewrite /uploads {
 rewrite {
   if {method} not GET
   if {path} not_match ^/uploads
+  if {path} not_match ^/authenticated_uploads
 
   if_op and
   to /forbidden
