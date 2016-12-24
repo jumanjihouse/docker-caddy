@@ -7,4 +7,4 @@ index f55a988..1bdf76f 100755
  ldflags+=("-X" "\"${name}=${value}\"")
  
 -go build -ldflags "${ldflags[*]}" -o "${output_filename}"
-+go build -ldflags "${ldflags[*]}" -o "${output_filename}" -buildmode=exe
++go build -ldflags "${ldflags[*]} -extldflags '-static' -s" -o "${output_filename}" -buildmode=exe

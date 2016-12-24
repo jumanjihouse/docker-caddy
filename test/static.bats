@@ -11,6 +11,7 @@
 @test "caddy binary is stripped" {
   run file runtime/caddy
   [[ $output =~ stripped ]]
+  [[ ! $output =~ 'not stripped' ]]
 }
 
 @test "caddy binary is statically compiled" {
