@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM alpine:3.5
 
 ARG CI_BUILD_URL
 ARG BUILD_DATE
@@ -17,7 +17,6 @@ LABEL \
 
 RUN apk upgrade --no-cache --available && \
     apk add --no-cache \
-      -X http://dl-cdn.alpinelinux.org/alpine/edge/main \
       ca-certificates \
       git \
       libressl \

@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM alpine:3.5
 
 ENV GOPATH /home/developer
 ENV CGO_ENABLED 0
@@ -6,9 +6,6 @@ ENV GOOS linux
 
 RUN apk upgrade --no-cache --available && \
     apk add --no-cache \
-      -X http://dl-cdn.alpinelinux.org/alpine/edge/main \
-      -X http://dl-cdn.alpinelinux.org/alpine/edge/community \
-      -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
       bash \
       ca-certificates \
       file \
