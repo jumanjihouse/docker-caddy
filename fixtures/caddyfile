@@ -5,6 +5,15 @@ errors stderr
 # This directive supports https://caddyserver.com/docs/placeholders
 log / stdout "{remote} - [{when}] \"{method} {uri} {proto}\" {status} {size} {latency} {request}"
 
+# https://caddyserver.com/docs/timeouts
+# Show the defaults here just to show that we have RTFD.
+timeouts {
+  header 10s
+  idle   2m
+  read   10s
+  write  20s
+}
+
 # After this line, all other paths are relative to root.
 root /home/caddy
 
