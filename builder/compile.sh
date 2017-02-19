@@ -15,6 +15,9 @@ patch -p0 -i /home/developer/plugins.patch
 # https://bugs.alpinelinux.org/issues/6072
 patch -p0 -i /home/developer/static.patch
 
+# https://github.com/niemeyer/gopkg/issues/50
+git config --global http.https://gopkg.in.followRedirects true
+
 # Fetch dependencies.
 go get -d ./...
 
