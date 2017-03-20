@@ -7,26 +7,19 @@ Caddy web server
 [![Docker Registry](https://img.shields.io/docker/pulls/jumanjiman/caddy.svg)](https://registry.hub.docker.com/u/jumanjiman/caddy/)&nbsp;
 [![Circle CI](https://circleci.com/gh/jumanjihouse/docker-caddy.png?circle-token=cf57179da67e6644c2d6efee8b4612774a3bd29b)](https://circleci.com/gh/jumanjihouse/docker-caddy/tree/master 'View CI builds')
 
-This project: [https://github.com/jumanjihouse/docker-caddy]
-(https://github.com/jumanjihouse/docker-caddy)
-
-Docker image: [https://registry.hub.docker.com/u/jumanjiman/caddy/]
-(https://registry.hub.docker.com/u/jumanjiman/caddy/)
-
-Upstream Caddy: [https://github.com/mholt/caddy]
-(https://github.com/mholt/caddy)
+This project: https://github.com/jumanjihouse/docker-caddy/<br/>
+Docker image: https://registry.hub.docker.com/u/jumanjiman/caddy/<br/>
+Upstream Caddy: https://github.com/mholt/caddy/
 
 
 About
 -----
 
 This git repo downloads golang source code from
-[https://github.com/mholt/caddy]
-(https://github.com/mholt/caddy)
+https://github.com/mholt/caddy/
 and builds a small docker image.
 
-See [http://blog.gopheracademy.com/caddy-a-look-inside/]
-(http://blog.gopheracademy.com/caddy-a-look-inside/)
+See http://blog.gopheracademy.com/caddy-a-look-inside/
 and [https://caddyserver.com/](https://caddyserver.com/)
 to learn about Caddy.
 
