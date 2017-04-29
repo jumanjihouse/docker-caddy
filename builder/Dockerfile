@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM golang:1.8.1-alpine
 
 ENV GOPATH /home/developer
 ENV CGO_ENABLED 0
@@ -10,7 +10,6 @@ RUN apk upgrade --no-cache --available && \
       ca-certificates \
       file \
       git \
-      'go>=1.7' \
       libressl-dev \
       musl-dev \
       scanelf \
