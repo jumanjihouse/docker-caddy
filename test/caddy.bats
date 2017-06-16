@@ -7,3 +7,8 @@
   run docker logs caddy
   [[ $output =~ 0.0.0.0:2020 ]]
 }
+
+@test "caddy2 is running on the test port" {
+  run docker logs caddy2
+  [[ $output =~ 0.0.0.0:2020 ]]
+}

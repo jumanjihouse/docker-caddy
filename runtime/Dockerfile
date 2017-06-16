@@ -23,6 +23,7 @@ RUN apk upgrade --no-cache --available && \
     && adduser -Du 1000 caddy
 
 RUN echo "hello world" > /home/caddy/index.html
+COPY caddyfile /etc/caddy/
 
 VOLUME ["/etc/caddy"]
 VOLUME ["/home/caddy"]

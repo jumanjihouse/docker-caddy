@@ -69,6 +69,8 @@ Output of `make test` resembles:
 
     ✓ caddy image exists
     ✓ caddy is running on the test port
+    ✓ caddy2 is running on the test port
+    ✓ see hello world with default config
     ✓ git plugin is installed
     ✓ git plugin works
     ✓ can browse docker-caddy path
@@ -83,7 +85,7 @@ Output of `make test` resembles:
     ✓ move works
     ✓ head is forbidden
 
-    15 tests, 0 failures, 2 skipped
+    17 tests, 0 failures, 2 skipped
 
 The test harness uses an example caddyfile at [`fixtures/caddyfile`](fixtures/caddyfile)
 to demonstrate ways to secure a Caddy-based site according to
@@ -132,4 +134,15 @@ Create a config in some directory on your host, then:
     -v /path/to/configdir:/etc/caddy \
     --read-only \
     --cap-drop all \
+    jumanjiman/caddy -conf /etc/caddy/caddyfile
+
+Alternatively, use the minimal default [caddyfile](runtime/caddyfile) from the image
+to just serve files from `/home/caddy`:
+
+    docker run -d \
+    -p 2020:2020 \
+    --name caddy \
+    --read-only \
+    --cap-drop all \
+    -v /path/to/your/files:/home/caddy:ro \
     jumanjiman/caddy -conf /etc/caddy/caddyfile

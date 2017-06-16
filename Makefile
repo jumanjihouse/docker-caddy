@@ -19,6 +19,7 @@ clean: stop
 stop:
 	@docker rm -f caddy || :
 	@docker rm -f caddyfile || :
+	@docker rm -f caddy2 || :
 
 runtime/caddy:
 	@docker build -t caddybuild builder/
@@ -49,12 +50,27 @@ ifdef CIRCLECI
 		--read-only \
 		-p 80:2020 \
 		jumanjiman/caddy -conf /etc/caddy/caddyfile
+
+	# Default caddyfile from image.
+	@docker run -d \
+		--name caddy2 \
+		--read-only \
+		-p 81:2020 \
+		jumanjiman/caddy -conf /etc/caddy/caddyfile
 else
 	@docker run -d \
 		--name caddy \
 		--volumes-from caddyfile \
 		--read-only \
 		-p 80:2020 \
+		--cap-drop all \
+		jumanjiman/caddy -conf /etc/caddy/caddyfile
+
+	# Default caddyfile from image.
+	@docker run -d \
+		--name caddy2 \
+		--read-only \
+		-p 81:2020 \
 		--cap-drop all \
 		jumanjiman/caddy -conf /etc/caddy/caddyfile
 endif
