@@ -33,3 +33,4 @@ COPY caddy /usr/sbin/caddy
 # Run as an unprivileged user.
 USER caddy
 ENTRYPOINT ["/usr/sbin/caddy"]
+CMD ["-conf", "/etc/caddy/caddyfile"]

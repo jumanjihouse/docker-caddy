@@ -49,14 +49,14 @@ ifdef CIRCLECI
 		--volumes-from caddyfile \
 		--read-only \
 		-p 80:2020 \
-		jumanjiman/caddy -conf /etc/caddy/caddyfile
+		jumanjiman/caddy
 
 	# Default caddyfile from image.
 	@docker run -d \
 		--name caddy2 \
 		--read-only \
 		-p 81:2020 \
-		jumanjiman/caddy -conf /etc/caddy/caddyfile
+		jumanjiman/caddy
 else
 	@docker run -d \
 		--name caddy \
@@ -64,7 +64,7 @@ else
 		--read-only \
 		-p 80:2020 \
 		--cap-drop all \
-		jumanjiman/caddy -conf /etc/caddy/caddyfile
+		jumanjiman/caddy
 
 	# Default caddyfile from image.
 	@docker run -d \
@@ -72,7 +72,7 @@ else
 		--read-only \
 		-p 81:2020 \
 		--cap-drop all \
-		jumanjiman/caddy -conf /etc/caddy/caddyfile
+		jumanjiman/caddy
 endif
 	sleep 5
 	bats test/*.bats
