@@ -1,0 +1,5 @@
+#!/bin/sh
+set -e
+
+make push
+curl -X POST 'https://hooks.microbadger.com/images/jumanjiman/caddy/d778z2MK3ZVXEUcLSFu8Bx8q4KA='

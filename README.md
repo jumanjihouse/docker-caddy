@@ -49,7 +49,7 @@ How-to
 
 :warning: Build requires Docker 1.9.0 or later (for docker build args).
 
-    make all
+    ci/build
 
 The above command builds a `caddybuild` image, which builds
 a static binary. It then copies the static binary
@@ -65,7 +65,7 @@ plugins that depend on external tools, such as `git`.
 We use circleci to build, test, and publish the image to Docker hub.
 We use [BATS](https://github.com/sstephenson/bats) to run the test harness.
 
-Output of `make test` resembles:
+Output of `ci/test` resembles:
 
     ✓ caddy image exists
     ✓ caddy is running on the test port
