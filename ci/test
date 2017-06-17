@@ -1,4 +1,10 @@
 #!/bin/sh
 set -e
 
-make test
+. ci/vars
+
+touch test/env.bash
+
+docker-compose up -d caddy1 caddy2
+sleep 5
+bats test/*.bats

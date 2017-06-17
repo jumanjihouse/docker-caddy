@@ -2,3 +2,4 @@
 *.swp
 caddy
 test/env.bash
+ci/vars

@@ -1,0 +1,76 @@
+version: '2.1'
+
+networks:
+  testnet:
+    driver: bridge
+    enable_ipv6: false
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.254.0/24
+          gateway: 192.168.254.1
+
+services:
+  builder:
+    image: builder
+    build:
+      context: builder/
+    command: /home/developer/compile.sh
+
+  caddy:
+    image: jumanjiman/caddy
+    build:
+      context: runtime/
+      args:
+        - CI_BUILD_URL=${CIRCLE_BUILD_URL}
+        - VCS_REF
+        - BUILD_DATE
+        - CADDY_VERSION
+    read_only: true
+    cap_drop:
+      - all
+    pids_limit: 20
+    cpu_shares: 512
+    mem_limit: 100M
+    shm_size: 16M
+
+  caddy_tag:
+    extends: caddy
+    image: jumanjiman/caddy:${TAG}
+
+  caddy1:
+    extends: caddy
+    volumes_from:
+      - container:fixtures:ro
+    ports:
+      - 80:2020
+    networks:
+      testnet:
+        ipv4_address: 192.168.254.254
+
+  caddy2:
+    extends: caddy
+    ports:
+      - 81:2020
+    networks:
+      testnet:
+        ipv4_address: 192.168.254.253
+
+  test:
+    image: jumanjiman/cci
+    volumes:
+      - /tmp:/tmp:rw
+    networks:
+      - testnet
+
+  curl:
+    extends: test
+    entrypoint: curl
+
+  cmp:
+    extends: test
+    entrypoint: cmp
+
+  clean:
+    extends: test
+    command: rm -fr /tmp/*release
