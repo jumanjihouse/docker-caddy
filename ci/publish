@@ -1,0 +1,9 @@
+#!/bin/sh
+set -e
+
+. ci/vars
+
+docker login -u ${user} -p ${pass}
+docker-compose push caddy_tag caddy
+docker logout
+curl -X POST 'https://hooks.microbadger.com/images/jumanjiman/caddy/d778z2MK3ZVXEUcLSFu8Bx8q4KA='

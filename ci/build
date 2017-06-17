@@ -1,0 +1,24 @@
+#!/bin/sh
+set -e
+
+. builder/CADDY_VERSION
+cat > ci/vars <<EOF
+export CADDY_VERSION=${CADDY_VERSION}
+export BUILD_DATE=$(date +%Y%m%dT%H%M)
+export VCS_REF=$(git rev-parse --short HEAD)
+export TAG=\${CADDY_VERSION}-\${BUILD_DATE}-git-\${VCS_REF}
+EOF
+
+. ci/vars
+
+docker rm -f fixtures || :
+docker build --rm -t fixtures fixtures/
+docker create --name=fixtures fixtures /bin/true
+
+docker rm -f builder || :
+docker-compose build builder
+
+docker-compose run --name=builder builder
+docker cp builder:/home/developer/bin/caddy runtime/
+
+docker-compose build caddy caddy_tag

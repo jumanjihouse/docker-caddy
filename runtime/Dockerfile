@@ -3,11 +3,11 @@ FROM alpine:3.6
 ARG CI_BUILD_URL
 ARG BUILD_DATE
 ARG VCS_REF
-ARG VERSION
+ARG CADDY_VERSION
 
 LABEL \
     io.github.jumanjiman.ci-build-url=$CI_BUILD_URL \
-    io.github.jumanjiman.version=$VERSION \
+    io.github.jumanjiman.version=$CADDY_VERSION \
     io.github.jumanjiman.build-date=$BUILD_DATE \
     io.github.jumanjiman.vcs-ref=$VCS_REF \
     io.github.jumanjiman.license="Apache License 2.0" \

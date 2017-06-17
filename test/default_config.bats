@@ -1,8 +1,4 @@
-setup() {
-  ip=$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' caddy2)
-}
-
 @test "see hello world with default config" {
-  run curl --fail -sS -L http://${ip}:2020/
+  run docker-compose run --rm curl --fail -ssL http://192.168.254.253:2020/
   [[ $output =~ "hello world" ]]
 }
