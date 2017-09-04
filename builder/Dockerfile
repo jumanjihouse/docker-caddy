@@ -1,4 +1,6 @@
-FROM golang:1.8.1-alpine
+# Must use go 1.9.0 or higher so "go get ./..." ignores the vendor folder.
+# https://github.com/lucas-clemente/quic-go/issues/797
+FROM golang:1.9.0-alpine
 
 ENV GOPATH /home/developer
 ENV CGO_ENABLED 0
@@ -7,6 +9,7 @@ ENV GOOS linux
 RUN apk upgrade --no-cache --available && \
     apk add --no-cache \
       bash \
+      binutils \
       ca-certificates \
       file \
       git \
