@@ -20,13 +20,19 @@ RUN apk upgrade --no-cache --available && \
       ca-certificates \
       git \
       libressl \
+      openssh-client \
     && adduser -Du 1000 caddy
 
 RUN echo "hello world" > /home/caddy/index.html
 COPY caddyfile /etc/caddy/
 
+RUN \
+    mkdir -p /var/www && \
+    chown caddy:caddy /var/www && \
+    :
+
 VOLUME ["/etc/caddy"]
-VOLUME ["/home/caddy"]
+VOLUME ["/var/www"]
 
 COPY caddy /usr/sbin/caddy
 
