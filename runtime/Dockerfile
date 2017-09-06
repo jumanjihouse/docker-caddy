@@ -20,6 +20,7 @@ RUN apk upgrade --no-cache --available && \
       ca-certificates \
       git \
       libressl \
+      openssh-client \
     && adduser -Du 1000 caddy
 
 RUN echo "hello world" > /home/caddy/index.html
