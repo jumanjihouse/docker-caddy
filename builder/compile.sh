@@ -1,8 +1,9 @@
 #!/bin/sh
 set -ex
 
+# https://github.com/mholt/caddy/commit/3b144c21d01
 # https://github.com/mholt/caddy/issues/1843
-go get github.com/caddyserver/buildworker
+go get github.com/caddyserver/builds
 
 source /home/developer/CADDY_VERSION
 go get -d github.com/mholt/caddy
