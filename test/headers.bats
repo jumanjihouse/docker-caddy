@@ -7,3 +7,8 @@ load env
   grade=$(curl --fail -sS -I -X HEAD "https://securityheaders.io/?q=${public_ip}" | awk '/X-Grade/ {print $NF}')
   [[ $grade == "A+" ]]
 }
+
+@test "do not reveal server software name" {
+  run docker-compose run --rm curl -i http://192.168.254.253:2020/
+  ! [[ $output =~ sponsors ]]
+}

@@ -1,0 +1,23 @@
+diff --git caddyhttp/httpserver/server.go caddyhttp/httpserver/server.go
+index 6096a13..f142141 100644
+--- caddyhttp/httpserver/server.go
++++ caddyhttp/httpserver/server.go
+@@ -343,8 +343,16 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+ 	r = r.WithContext(c)
+ 
+ 	w.Header().Set("Server", caddy.AppName)
+-	sponsors := "Minio, Uptime Robot, and Sourcegraph"
+-	w.Header().Set("Caddy-Sponsors", "This free web server is made possible by its sponsors: "+sponsors)
++	//sponsors := "Minio, Uptime Robot, and Sourcegraph"
++	//w.Header().Set("Caddy-Sponsors", "This free web server is made possible by its sponsors: "+sponsors)
++	/*
++	  https://caddyserver.com/blog/accouncing-caddy-commercial-licenses
++
++	  The EULA to set this header applies to pre-built, downloaded binaries.
++	  It does not apply to build-from-source.
++
++	  We suppress this header so that we do not disclose what server this is.
++	*/
+ 
+ 	status, _ := s.serveHTTP(w, r)
+ 
