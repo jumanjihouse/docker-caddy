@@ -16,14 +16,6 @@ git checkout ${CADDY_VERSION}
 # Add one or more plugins.
 patch -p0 -i /home/developer/plugins.patch
 
-# Note: I created these patches with...
-#   git diff --no-color --no-prefix
-#
-# Remove sponsors header.
-# The sponsors header can reveal the server software.
-# We do not want to reveal such things.
-patch -p0 -i /home/developer/sponsors.patch
-
 # https://github.com/niemeyer/gopkg/issues/50
 git config --global http.https://gopkg.in.followRedirects true
 

@@ -1,5 +1,10 @@
 FROM alpine:3.6
 
+# Override the default false.
+# https://caddyserver.com/blog/caddy-0_10_10-and-pricing
+# https://caddyserver.com/docs/cli
+ENV CASE_SENSITIVE_PATH=true
+
 ARG CI_BUILD_URL
 ARG BUILD_DATE
 ARG VCS_REF
