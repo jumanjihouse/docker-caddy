@@ -1,4 +1,4 @@
-@test "git plugin is installed" {
+@test "cgi plugin is installed" {
   run docker-compose run --rm caddy -plugins
   [[ $output =~ http.cgi ]]
 }

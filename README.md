@@ -28,6 +28,7 @@ to learn about Caddy.
 
 The following plugins are installed in the image:
 
+* [caddy-cgi](https://github.com/jung-kurt/caddy-cgi)
 * [caddy-git](https://github.com/abiosoft/caddy-git)
 * [caddy-upload](https://github.com/wmark/caddy.upload)
 
@@ -70,7 +71,7 @@ Output of `ci/test` resembles:
     ✓ caddy image exists
     ✓ caddy is running on the test port
     ✓ caddy2 is running on the test port
-    ✓ git plugin is installed
+    ✓ cgi plugin is installed
     ✓ cgi script works
     ✓ see hello world with default config
     ✓ git plugin is installed
