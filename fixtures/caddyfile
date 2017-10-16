@@ -20,6 +20,9 @@ root /var/www
 # Render markdown files as html.
 markdown /
 
+# Process a cgi script.
+cgi /hellocgi /cgi-bin/hello
+
 # Provide custom URL that returns status 405 "Method not allowed".
 # Then we can conditionally rewrite paths to this URL.
 status 405 /forbidden

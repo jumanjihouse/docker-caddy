@@ -1,13 +1,14 @@
 diff --git caddy/caddymain/run.go caddy/caddymain/run.go
-index ebd6a3b..57346ba 100644
+index 81f97f2..dc6bf9e 100644
 --- caddy/caddymain/run.go
 +++ caddy/caddymain/run.go
-@@ -22,6 +22,8 @@ import (
+@@ -35,6 +35,9 @@ import (
  
  	"github.com/mholt/caddy/caddytls"
  	// This is where other plugins get plugged in (imported)
 +	_ "github.com/abiosoft/caddy-git"
 +	_ "blitznote.com/src/caddy.upload"
++	_ "github.com/jung-kurt/caddy-cgi"
  )
  
  func init() {

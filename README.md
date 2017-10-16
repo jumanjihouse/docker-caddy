@@ -70,6 +70,8 @@ Output of `ci/test` resembles:
     ✓ caddy image exists
     ✓ caddy is running on the test port
     ✓ caddy2 is running on the test port
+    ✓ git plugin is installed
+    ✓ cgi script works
     ✓ see hello world with default config
     ✓ git plugin is installed
     ✓ git plugin works
@@ -86,7 +88,7 @@ Output of `ci/test` resembles:
     ✓ move works
     ✓ head is forbidden
 
-    18 tests, 0 failures, 2 skipped
+    20 tests, 0 failures, 2 skipped
 
 The test harness uses an example caddyfile at [`fixtures/caddyfile`](fixtures/caddyfile)
 to demonstrate ways to secure a Caddy-based site according to
