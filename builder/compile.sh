@@ -22,9 +22,13 @@ git config --global http.https://gopkg.in.followRedirects true
 # Fetch dependencies.
 go get -d ./...
 
+# run go-getter after the deps have been fetched above
+# https://github.com/joewalnes/go-getter
+cd /home/developer && ./go-getter gofile
+
 # Build!
 mkdir /home/developer/bin/
-cd caddy
+cd /home/developer/src/github.com/mholt/caddy/caddy
 go run build.go
 
 cp /home/developer/src/github.com/mholt/caddy/caddy/caddy /home/developer/bin/
