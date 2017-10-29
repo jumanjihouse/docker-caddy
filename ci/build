@@ -11,6 +11,9 @@ EOF
 
 . ci/vars
 
+git submodule sync
+git submodule update --init --recursive
+
 docker rm -f fixtures || :
 docker build --rm -t fixtures fixtures/
 docker create --name=fixtures fixtures /bin/true
