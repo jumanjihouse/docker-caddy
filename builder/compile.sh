@@ -11,10 +11,13 @@ cd /home/developer/src/github.com/mholt/caddy
 git checkout ${CADDY_VERSION}
 
 # Note: I created these patches with...
-#   git diff --no-color --no-prefix
+#   git diff --no-color --no-prefix -U0
+#
+# The busybox version of patch doesn't understand unified diffs,
+# so we have to use GNU patch.
 #
 # Add one or more plugins.
-patch -p0 -i /home/developer/plugins.patch
+patch -p0 --unified -i /home/developer/plugins.patch
 
 # https://github.com/niemeyer/gopkg/issues/50
 git config --global http.https://gopkg.in.followRedirects true

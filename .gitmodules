@@ -1,0 +1,3 @@
+[submodule "builder/3pp/go-getter"]
+	path = builder/3pp/go-getter
+	url = https://github.com/joewalnes/go-getter.git
