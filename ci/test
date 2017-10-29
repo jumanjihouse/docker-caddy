@@ -7,4 +7,14 @@ touch test/env.bash
 
 docker-compose up -d caddy1 caddy2
 sleep 5
+
+echo
+echo Invoke BATS tests.
+echo
 bats test/*.bats
+
+echo
+echo Check every file for things like trailing whitespace.
+# Hint: -v1 shows just the names of offending files.
+#       -v2 shows lines with trailing whitespace.
+ci/check-files -v1
