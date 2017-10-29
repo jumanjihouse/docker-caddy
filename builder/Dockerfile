@@ -15,6 +15,7 @@ RUN apk upgrade --no-cache --available && \
       git \
       libressl-dev \
       musl-dev \
+      patch \
       scanelf \
     && adduser -D developer
 
