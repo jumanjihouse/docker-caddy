@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-. builder/CADDY_VERSION
+. src/CADDY_VERSION
 cat > ci/vars <<EOF
 export CADDY_VERSION=${CADDY_VERSION}
 export BUILD_DATE=$(date +%Y%m%dT%H%M)
@@ -14,14 +14,12 @@ EOF
 git submodule sync
 git submodule update --init --recursive
 
+echo
+echo Build fixtures for the test harness.
 docker rm -f fixtures || :
 docker build --rm -t fixtures fixtures/
 docker create --name=fixtures fixtures /bin/true
 
-docker rm -f builder || :
-docker-compose build builder
-
-docker-compose run --name=builder builder
-docker cp builder:/home/developer/bin/caddy runtime/
-
+echo
+echo Build caddy runtime.
 docker-compose build caddy caddy_tag

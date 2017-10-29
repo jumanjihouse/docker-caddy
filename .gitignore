@@ -1,5 +1,5 @@
 *~
 *.swp
-caddy
+test/caddy
 test/env.bash
 ci/vars

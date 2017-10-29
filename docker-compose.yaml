@@ -11,16 +11,10 @@ networks:
           gateway: 192.168.254.1
 
 services:
-  builder:
-    image: builder
-    build:
-      context: builder/
-    command: /home/developer/compile.sh
-
   caddy:
     image: jumanjiman/caddy
     build:
-      context: runtime/
+      context: src/
       args:
         - CI_BUILD_URL=${CIRCLE_BUILD_URL}
         - VCS_REF

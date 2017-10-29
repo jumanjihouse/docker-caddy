@@ -5,6 +5,15 @@ set -e
 
 touch test/env.bash
 
+echo
+echo Copy caddy binary into test area.
+docker rm -f copier &> /dev/null || :
+docker create --name=copier jumanjiman/caddy /bin/true
+docker cp copier:/usr/sbin/caddy test/
+docker rm -f copier &> /dev/null || :
+
+echo
+echo Start services.
 docker-compose up -d caddy1 caddy2
 sleep 5
 

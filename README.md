@@ -48,11 +48,11 @@ How-to
 
 ### Build
 
-:warning: Build requires Docker 1.9.0 or later (for docker build args).
+:warning: Build requires Docker CE 17.06.1 or higher (for multistage build).
 
     ci/build
 
-The above command builds a `caddybuild` image, which builds
+The above command uses Docker multistage build to compile
 a static binary. It then copies the static binary
 out of the build image and creates a runtime image, `caddy`.
 

@@ -9,15 +9,15 @@
 }
 
 @test "caddy binary is stripped" {
-  run file runtime/caddy
+  run file test/caddy
   [[ $output =~ stripped ]]
   [[ ! $output =~ 'not stripped' ]]
 }
 
 @test "caddy binary is statically compiled" {
-  run scanelf -BF '%o#F' runtime/caddy
+  run scanelf -BF '%o#F' test/caddy
   [[ $output =~ ET_EXEC ]]
 
-  run file runtime/caddy
+  run file test/caddy
   [[ $output =~ statically ]]
 }
