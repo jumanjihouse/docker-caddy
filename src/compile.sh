@@ -25,6 +25,12 @@ git config --global http.https://gopkg.in.followRedirects true
 # Fetch dependencies.
 go get -d ./...
 
+# Install go-getter.
+cd /tmp
+git clone https://github.com/joewalnes/go-getter.git
+cp -f go-getter/go-getter /home/developer/
+export PATH=${PATH}:/home/developer/bin/
+
 # run go-getter after the deps have been fetched above
 # https://github.com/joewalnes/go-getter
 cd /home/developer && ./go-getter gofile

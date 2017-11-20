@@ -1,3 +1,0 @@
-[submodule "src/3pp/go-getter"]
-	path = src/3pp/go-getter
-	url = https://github.com/joewalnes/go-getter.git
