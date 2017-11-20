@@ -1,9 +1,22 @@
-#!/bin/sh
+#!/bin/bash
 set -e
+set -u
+set -o pipefail
+
+################################################################################
+# Run the test harness. Invoke as "ci/test".
+################################################################################
 
 . ci/vars
+. ci/functions.sh
 
 touch test/env.bash
+
+echo
+echo Check every file for things like trailing whitespace.
+# Hint: -v1 shows just the names of offending files.
+#       -v2 shows lines with trailing whitespace.
+ci/check-files -v2
 
 echo
 echo Copy caddy binary into test area.
@@ -21,9 +34,3 @@ echo
 echo Invoke BATS tests.
 echo
 bats test/*.bats
-
-echo
-echo Check every file for things like trailing whitespace.
-# Hint: -v1 shows just the names of offending files.
-#       -v2 shows lines with trailing whitespace.
-ci/check-files -v1

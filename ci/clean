@@ -1,4 +1,13 @@
-#!/bin/sh
+#!/bin/bash
+set -e
+set -u
+set -o pipefail
+
+################################################################################
+# Clean the local build environment.
+################################################################################
+
+. ci/functions.sh
 
 docker-compose down
 docker ps -a | grep fixtures && docker rm fixtures

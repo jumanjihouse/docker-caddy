@@ -1,14 +1,34 @@
 #!/bin/sh
 set -ex
+set -u
+set -o pipefail
+
+################################################################################
+# Compile the caddy webserver.
+################################################################################
+
+finish() {
+  readonly RC=$?
+
+  if [ ${RC} -eq 0 ]; then
+    echo "$0" OK >&2
+  else
+    echo "$0" failed with exit code ${RC} >&2
+    exit ${RC}
+  fi
+}
+
+trap finish EXIT
 
 # https://github.com/mholt/caddy/commit/3b144c21d01
 # https://github.com/mholt/caddy/issues/1843
 go get github.com/caddyserver/builds
 
-source /home/developer/CADDY_VERSION
+. /home/developer/CADDY_VERSION
+readonly CADDY_VERSION
 go get -d github.com/mholt/caddy
 cd /home/developer/src/github.com/mholt/caddy
-git checkout ${CADDY_VERSION}
+git checkout "${CADDY_VERSION}"
 
 # Note: I created these patches with...
 #   git diff --no-color --no-prefix -U0

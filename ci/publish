@@ -1,9 +1,17 @@
-#!/bin/sh
+#!/bin/bash
 set -e
+set -u
+set -o pipefail
+
+################################################################################
+# Publish image(s) to Docker hub.
+################################################################################
 
 . ci/vars
+. ci/functions.sh
 
-docker login -u ${user} -p ${pass}
+# shellcheck disable=SC2154
+docker login -u "${user}" -p "${pass}"
 docker-compose push caddy_tag caddy
 docker logout
 curl -X POST 'https://hooks.microbadger.com/images/jumanjiman/caddy/d778z2MK3ZVXEUcLSFu8Bx8q4KA='
