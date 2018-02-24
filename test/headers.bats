@@ -5,6 +5,10 @@ load env
   fi
   public_ip=$(curl --fail -sS https://icanhazip.com/)
   grade=$(curl --fail -sS -I -X HEAD "https://securityheaders.io/?q=${public_ip}" | awk '/X-Grade/ {print $NF}')
+  # securityheaders.io caps grade at "A" because we don't use https.
+  # However, the test harness doesn't use https because we run the
+  # test harness on somebody else's infrastructure (circleci) and
+  # therefore have no control of dns and so forth.
   [[ $grade == "A" ]]
 }
 
