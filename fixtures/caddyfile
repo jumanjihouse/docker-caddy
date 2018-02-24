@@ -75,6 +75,16 @@ header / {
   # https://csp-evaluator.withgoogle.com/
   Content-Security-Policy "default-src 'self'; object-src 'none'; block-all-mixed-content; reflected-xss block;"
 
+  # Certificate Transparency is an open framework for monitoring
+  # and auditing the certificates issued by Certificate Authorities
+  # in near real-time. By requiring a CA to log all certificates
+  # they generate, site owners can quickly identify mis-issued
+  # certificates, and it becomes much easier to detect a rogue CA.
+  #
+  # https://scotthelme.co.uk/certificate-transparency-an-introduction/
+  # https://scotthelme.co.uk/a-new-security-header-expect-ct/
+  Expect-CT "max-age=0; report-uri=https://scotthelme.report-uri.io/r/default/ct/reportOnly"
+
   # https://scotthelme.co.uk/a-new-security-header-referrer-policy/
   Referrer-Policy "strict-origin-when-cross-origin"
 
