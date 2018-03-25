@@ -65,8 +65,22 @@ plugins that depend on external tools, such as `git`.
 
 We use circleci to build, test, and publish the image to Docker hub.
 We use [BATS](https://github.com/sstephenson/bats) to run the test harness.
+We use [pre-commit](https://pre-commit.com/) to run various file checks.
 
 Output of `ci/test` resembles:
+
+    [forbid-binary] Forbid binaries..........................................(no files to check)Skipped
+    [git-check] Check for conflict markers and core.whitespace errors............................Passed
+    [git-dirty] Check if the git tree is dirty...................................................Passed
+    [shellcheck] Test shell scripts with shellcheck..............................................Passed
+    [yamllint] yamllint..........................................................................Passed
+    [check-added-large-files] Check for added large files........................................Passed
+    [check-case-conflict] Check for case conflicts...............................................Passed
+    [check-executables-have-shebangs] Check that executables have shebangs.......................Passed
+    [check-json] Check JSON..................................................(no files to check)Skipped
+    [detect-private-key] Detect Private Key......................................................Passed
+    [forbid-crlf] CRLF end-lines checker.........................................................Passed
+    [forbid-tabs] No-tabs checker................................................................Passed
 
     ✓ caddy image exists
     ✓ caddy is running on the test port
