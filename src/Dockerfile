@@ -1,6 +1,6 @@
 # Must use go 1.9.0 or higher so "go get ./..." ignores the vendor folder.
 # https://github.com/lucas-clemente/quic-go/issues/797
-FROM golang:1.9.0-alpine as builder
+FROM golang:1.10.0-alpine as builder
 
 ENV GOPATH /home/developer
 ENV CGO_ENABLED 0
