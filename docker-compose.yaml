@@ -28,6 +28,8 @@ services:
     cpu_shares: 512
     mem_limit: 100M
     shm_size: 16M
+    environment:
+      - CADDYPATH=/var/www/
 
   caddy_tag:
     extends: caddy
