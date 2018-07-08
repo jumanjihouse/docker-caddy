@@ -10,7 +10,7 @@ set -o pipefail
 . ci/functions.sh
 
 . src/CADDY_VERSION
-cat > ci/vars <<EOF
+cat >ci/vars <<EOF
 declare -rx CADDY_VERSION=${CADDY_VERSION}
 declare -rx BUILD_DATE=$(date +%Y%m%dT%H%M)
 declare -rx VCS_REF=$(git rev-parse --short HEAD)
