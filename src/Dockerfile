@@ -36,7 +36,7 @@ RUN /home/developer/compile.sh
 ################################################################################
 # Build a runtime image.
 ################################################################################
-FROM alpine:3.7
+FROM alpine:3.8
 
 # Override the default false.
 # https://caddyserver.com/blog/caddy-0_10_10-and-pricing
