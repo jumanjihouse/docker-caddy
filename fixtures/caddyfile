@@ -28,7 +28,6 @@ cgi /hellocgi /cgi-bin/hello
 status 405 /forbidden
 
 upload /uploads {
-  yes_without_tls
   to "/var/www"
 }
 
