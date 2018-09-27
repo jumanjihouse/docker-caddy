@@ -28,9 +28,9 @@ to learn about Caddy.
 
 The following plugins are installed in the image:
 
-* [caddy-cgi](https://github.com/jung-kurt/caddy-cgi)
-* [caddy-git](https://github.com/abiosoft/caddy-git)
-* [caddy-upload](https://github.com/wmark/caddy.upload)
+* [http.cgi](https://github.com/jung-kurt/caddy-cgi)
+* [http.git](https://github.com/abiosoft/caddy-git)
+* [http.upload](https://github.com/wmark/caddy.upload)
 
 See [`fixtures/caddyfile`](fixtures/caddyfile)
 for an example config used to test this image.
