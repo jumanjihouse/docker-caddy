@@ -28,6 +28,7 @@ to learn about Caddy.
 
 The following plugins are installed in the image:
 
+* [http.cache](https://caddyserver.com/docs/http.cache)
 * [http.cgi](https://github.com/jung-kurt/caddy-cgi)
 * [http.git](https://github.com/abiosoft/caddy-git)
 * [http.upload](https://github.com/wmark/caddy.upload)

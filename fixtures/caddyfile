@@ -3,7 +3,7 @@
 errors stderr
 
 # This directive supports https://caddyserver.com/docs/placeholders
-log / stdout "{remote} - [{when}] \"{method} {uri} {proto}\" {status} {size} {latency} {request}"
+log / stdout "[{when}] remote \"{remote}\" method \"{method}\" uri \"{uri}\" proto \"{proto}\" status {status} size {size} latency {latency} request \"{request}\" upstream \"{upstream}\" cache_status \"{cache_status}\""
 
 # https://caddyserver.com/docs/timeouts
 # Show the defaults here just to show that we have RTFD.
@@ -60,6 +60,19 @@ git github.com/jumanjihouse/docker-caddy docker-caddy
 
 # Allow browsing in this dir.
 browse /docker-caddy
+
+# Requests to /assets actually go to caddy2 container.
+proxy /assets http://192.168.254.253:2020/ {
+  without /assets # Trim before proxying the request upstream.
+  transparent
+}
+
+# Cache assets for default time period.
+# https://caddyserver.com/docs/http.cache
+cache {
+  match_path /assets
+  path /dev/shm
+}
 
 # Headers for all paths to demonstrate reasonable safety.
 # This fixture does not use TLS, so we omit recommended headers for https.
