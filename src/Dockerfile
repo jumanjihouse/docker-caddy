@@ -31,7 +31,7 @@ WORKDIR /home/developer
 COPY . /home/developer/
 
 # Compile caddy.
-RUN /home/developer/compile.sh
+RUN /home/developer/compile
 
 ################################################################################
 # Build a runtime image.
@@ -61,7 +61,6 @@ RUN \
     chown caddy:caddy /var/www && \
     :
 
-VOLUME ["/etc/caddy"]
 VOLUME ["/var/www"]
 
 COPY --from=builder /home/developer/bin/caddy /usr/sbin/caddy

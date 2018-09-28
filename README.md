@@ -28,9 +28,9 @@ to learn about Caddy.
 
 The following plugins are installed in the image:
 
-* [caddy-cgi](https://github.com/jung-kurt/caddy-cgi)
-* [caddy-git](https://github.com/abiosoft/caddy-git)
-* [caddy-upload](https://github.com/wmark/caddy.upload)
+* [http.cgi](https://github.com/jung-kurt/caddy-cgi)
+* [http.git](https://github.com/abiosoft/caddy-git)
+* [http.upload](https://github.com/wmark/caddy.upload)
 
 See [`fixtures/caddyfile`](fixtures/caddyfile)
 for an example config used to test this image.
@@ -82,26 +82,26 @@ Output of `ci/test` resembles:
     [forbid-crlf] CRLF end-lines checker.........................................................Passed
     [forbid-tabs] No-tabs checker................................................................Passed
 
-    ✓ caddy image exists
-    ✓ caddy is running on the test port
-    ✓ caddy2 is running on the test port
-    ✓ cgi plugin is installed
-    ✓ cgi script works
-    ✓ see hello world with default config
-    ✓ git plugin is installed
-    ✓ git plugin works
-    ✓ can browse docker-caddy path
+    ok caddy image exists
+    ok caddy is running on the test port
+    ok caddy2 is running on the test port
+    ok cgi plugin is installed
+    ok cgi script works
+    ok see hello world with default config
+    ok git plugin is installed
+    ok git plugin works
+    ok can browse docker-caddy path
     - securityheaders.io shows A (skipped: define HAS_INBOUND_PORT_80 in test/env.bash to run this test)
-    ✓ do not reveal server software name
+    ok do not reveal server software name
     - ci-build-url label is present (skipped: This test only runs on CircleCI)
-    ✓ file command is available
-    ✓ scanelf command is available
-    ✓ caddy binary is stripped
-    ✓ caddy binary is statically compiled
-    ✓ upload plugin is present
-    ✓ upload works
-    ✓ move works
-    ✓ head is forbidden
+    ok file command is available
+    ok scanelf command is available
+    ok caddy binary is stripped
+    ok caddy binary is statically compiled
+    ok upload plugin is present
+    ok upload works
+    ok move works
+    ok head is forbidden
 
     20 tests, 0 failures, 2 skipped
 

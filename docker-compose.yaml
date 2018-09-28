@@ -37,8 +37,9 @@ services:
 
   caddy1:
     extends: caddy
-    volumes_from:
-      - container:fixtures:ro
+    image: caddy1
+    build:
+      context: fixtures/
     ports:
       - 80:2020
     networks:

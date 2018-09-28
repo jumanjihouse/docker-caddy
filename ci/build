@@ -1,6 +1,5 @@
 #!/bin/bash
-set -e
-set -u
+set -eEu
 set -o pipefail
 
 ################################################################################
@@ -19,12 +18,4 @@ EOF
 
 . ci/vars
 
-echo
-echo Build fixtures for the test harness.
-docker rm -f fixtures || :
-docker build --rm -t fixtures fixtures/
-docker create --name=fixtures fixtures /bin/true
-
-echo
-echo Build caddy runtime.
-docker-compose build caddy caddy_tag
+run docker-compose build

@@ -6,11 +6,16 @@ fail_fast: false
 
 repos:
   - repo: https://github.com/jumanjihouse/pre-commit-hooks
-    rev: 1.7.1
+    rev: 1.10.2
     hooks:
+      - id: check-mailmap
       - id: forbid-binary
       - id: git-check  # Configure in .gitattributes
       - id: git-dirty  # Configure in .gitignore
+      - id: require-ascii
+        exclude: ^ci/ansi$  # 3rd-party script
+      - id: script-must-have-extension
+      - id: script-must-not-have-extension
       - id: shellcheck
       - id: shfmt
 
@@ -38,3 +43,15 @@ repos:
           (?x)^(
             src/plugins.patch
           )$
+
+  - repo: https://github.com/jorisroovers/gitlint
+    rev: v0.10.0
+    hooks:
+      - id: gitlint
+        stages: [commit-msg]
+
+      - id: gitlint
+        entry: gitlint --commits upstream/master..
+        pass_filenames: false
+        always_run: true
+        stages: [manual]
