@@ -1,5 +1,3 @@
-FROM scratch
+FROM jumanjiman/caddy
 COPY caddyfile /etc/caddy/caddyfile
-VOLUME ["/etc/caddy"]
 COPY hello /cgi-bin/
-VOLUME ["/cgi-bin"]

@@ -8,8 +8,7 @@ set -o pipefail
 
 . ci/functions.sh
 
-docker-compose down
-docker ps -a | grep fixtures && docker rm fixtures
-docker images | awk '/caddy/ {print $3}' | xargs docker rmi -f
-docker images | awk '/fixtures|builder/ {print $3}' | xargs docker rmi -f
-docker images -qf dangling=true | xargs docker rmi
+run docker-compose down
+docker images | awk '/caddy/ {print $3}' | run xargs docker rmi -f
+docker images | awk '/builder/ {print $3}' | run xargs docker rmi -f
+docker images -qf dangling=true | run xargs docker rmi

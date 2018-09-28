@@ -18,10 +18,4 @@ EOF
 
 . ci/vars
 
-info 'Build fixtures for the test harness.'
-run docker rm -f fixtures || :
-run docker build --rm -t fixtures fixtures/
-run docker create --name=fixtures fixtures /bin/true
-
-info 'Build caddy runtime.'
-run docker-compose build caddy caddy_tag
+run docker-compose build
