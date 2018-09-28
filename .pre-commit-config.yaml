@@ -6,11 +6,15 @@ fail_fast: false
 
 repos:
   - repo: https://github.com/jumanjihouse/pre-commit-hooks
-    rev: 1.7.1
+    rev: 1.10.2
     hooks:
+      - id: check-mailmap
       - id: forbid-binary
       - id: git-check  # Configure in .gitattributes
       - id: git-dirty  # Configure in .gitignore
+      - id: require-ascii
+      - id: script-must-have-extension
+      - id: script-must-not-have-extension
       - id: shellcheck
       - id: shfmt
 

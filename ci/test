@@ -14,7 +14,7 @@ touch test/env.bash
 
 echo
 echo Check every file for things like trailing whitespace.
-pre-commit run --all-files --verbose
+pre-commit run --all-files
 
 echo
 echo Copy caddy binary into test area.
