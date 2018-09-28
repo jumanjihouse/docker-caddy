@@ -12,6 +12,9 @@ touch test/env.bash
 
 run pre-commit run --all-files --hook-stage manual
 
+info 'Ensure build is up-to-date.'
+ci/build
+
 info 'Copy caddy binary into test area.'
 run docker rm -f copier &>/dev/null || :
 run docker create --name=copier jumanjiman/caddy /bin/true
