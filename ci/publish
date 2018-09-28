@@ -1,6 +1,5 @@
 #!/bin/bash
-set -e
-set -u
+set -eEu
 set -o pipefail
 
 ################################################################################
@@ -12,6 +11,6 @@ set -o pipefail
 
 # shellcheck disable=SC2154
 docker login -u "${user}" -p "${pass}"
-docker-compose push caddy_tag caddy
+run docker-compose push caddy_tag caddy
 docker logout
-curl -X POST 'https://hooks.microbadger.com/images/jumanjiman/caddy/d778z2MK3ZVXEUcLSFu8Bx8q4KA='
+run curl -X POST 'https://hooks.microbadger.com/images/jumanjiman/caddy/d778z2MK3ZVXEUcLSFu8Bx8q4KA='

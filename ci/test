@@ -1,6 +1,5 @@
 #!/bin/bash
-set -e
-set -u
+set -eEu
 set -o pipefail
 
 ################################################################################
@@ -8,27 +7,20 @@ set -o pipefail
 ################################################################################
 . ci/bootstrap
 . ci/vars
-. ci/functions.sh
 
 touch test/env.bash
 
-echo
-echo Check every file for things like trailing whitespace.
-pre-commit run --all-files
+run pre-commit run --all-files
 
-echo
-echo Copy caddy binary into test area.
-docker rm -f copier &>/dev/null || :
-docker create --name=copier jumanjiman/caddy /bin/true
-docker cp copier:/usr/sbin/caddy test/
-docker rm -f copier &>/dev/null || :
+info 'Copy caddy binary into test area.'
+run docker rm -f copier &>/dev/null || :
+run docker create --name=copier jumanjiman/caddy /bin/true
+run docker cp copier:/usr/sbin/caddy test/
+run docker rm -f copier &>/dev/null || :
 
-echo
-echo Start services.
-docker-compose up -d caddy1 caddy2
-sleep 5
+info 'Start services.'
+run docker-compose up -d caddy1 caddy2
+run sleep 5
 
-echo
-echo Invoke BATS tests.
-echo
-bats test/*.bats
+info 'Invoke BATS tests.'
+run bats test/*.bats
