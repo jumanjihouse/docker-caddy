@@ -10,7 +10,7 @@ set -o pipefail
 
 touch test/env.bash
 
-run pre-commit run --all-files
+run pre-commit run --all-files --hook-stage manual
 
 info 'Copy caddy binary into test area.'
 run docker rm -f copier &>/dev/null || :

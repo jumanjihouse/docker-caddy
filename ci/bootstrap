@@ -12,6 +12,8 @@ set -o pipefail
 main() {
   setup_python_path
   install_precommit
+  add_upstream
+  fetch_upstream
 }
 
 setup_python_path() {
@@ -27,6 +29,20 @@ install_precommit() {
   if ! command -v pre-commit &>/dev/null; then
     run pip install --user -Iv --compile --no-cache-dir pre-commit
   fi
+}
+
+add_upstream() {
+  upstream_uri='git@github.com:jumanjihouse/docker-caddy.git'
+  if git remote show upstream | grep "${upstream_uri}" &>/dev/null; then
+    info 'Upstream git repo is correct.'
+  else
+    git remote rm upstream || :
+    run git remote add upstream "${upstream_uri}"
+  fi
+}
+
+fetch_upstream() {
+  run git fetch --all
 }
 
 main
