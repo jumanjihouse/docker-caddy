@@ -117,6 +117,9 @@ create `test/env.bash` like this:
 
     HAS_INBOUND_PORT_80=true
 
+:warning: The securityheaders API is currently broken.
+See https://github.com/securityheaders/securityheaders-bugs/issues/57 for details.
+
 
 ### Pull an already-built image
 
