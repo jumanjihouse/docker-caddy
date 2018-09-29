@@ -69,6 +69,14 @@ header / {
   # 'soon' on Firefox https://bugzilla.mozilla.org/show_bug.cgi?id=471020
   X-Content-Type-Options "nosniff"
 
+  # Feature Policy allows a site to enable or disable browser features and APIs
+  # in the interest of better security and privacy.
+  # https://scotthelme.co.uk/a-new-security-header-feature-policy/
+  # https://caniuse.com/#search=feature%20policy
+  #
+  # https://github.com/WICG/feature-policy/blob/master/features.md
+  Feature-Policy "accelerometer 'none'; ambient-light-sensor 'none'; animations 'none'; autoplay 'none'; camera 'none'; encrypted-media 'none'; fullscreen 'none'; geolocation 'none'; gyroscope 'none'; image-compression 'none'; legacy-image-formats 'none'; magnetometer 'none'; max-downscaling-image 'none'; microphone 'none'; midi 'none'; payment 'none'; picture-in-picture 'none'; speaker 'none'; sync-xhr 'none'; unsized-media 'none'; usb 'none'; vertical-scroll 'none'; vr 'none'"
+
   # Do not disclose which server we are.
   -Server
 }

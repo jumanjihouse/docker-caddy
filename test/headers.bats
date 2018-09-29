@@ -1,5 +1,6 @@
 load env
 @test "securityheaders.io shows A" {
+  skip "API is currently broken. See https://github.com/securityheaders/securityheaders-bugs/issues/57"
   if [[ -z $HAS_INBOUND_PORT_80 ]]; then
     skip "define HAS_INBOUND_PORT_80 in test/env.bash to run this test"
   fi
