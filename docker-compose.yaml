@@ -42,6 +42,8 @@ services:
       context: fixtures/
     ports:
       - 80:2020
+    volumes:
+      - /var/www
     networks:
       testnet:
         ipv4_address: 192.168.254.254

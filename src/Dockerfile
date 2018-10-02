@@ -61,8 +61,6 @@ RUN \
     chown caddy:caddy /var/www && \
     :
 
-VOLUME ["/var/www"]
-
 COPY --from=builder /home/developer/bin/caddy /usr/sbin/caddy
 
 # Run as an unprivileged user.
