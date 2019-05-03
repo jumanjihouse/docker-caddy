@@ -1,9 +1,0 @@
-diff --git caddy/caddymain/run.go caddy/caddymain/run.go
-index 81f97f2..dc6bf9e 100644
---- caddy/caddymain/run.go
-+++ caddy/caddymain/run.go
-@@ -37,0 +38,4 @@ import (
-+	_ "github.com/abiosoft/caddy-git"
-+	_ "blitznote.com/src/caddy.upload"
-+	_ "github.com/jung-kurt/caddy-cgi"
-+	_ "github.com/nicolasazrak/caddy-cache"

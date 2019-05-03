@@ -41,7 +41,8 @@ repos:
       - id: forbid-tabs
         exclude: >
           (?x)^(
-            src/plugins.patch
+            src/main/go.mod|
+            src/main/main.go
           )$
 
   - repo: https://github.com/jorisroovers/gitlint
