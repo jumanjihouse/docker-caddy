@@ -1,6 +1,6 @@
 # Must use go 1.9.0 or higher so "go get ./..." ignores the vendor folder.
 # https://github.com/lucas-clemente/quic-go/issues/797
-FROM golang:1.12.4-alpine as builder
+FROM golang:1.16.4-alpine3.13
 
 ENV GOPATH /home/developer
 ENV CGO_ENABLED 0
@@ -38,7 +38,7 @@ RUN /home/developer/compile
 ################################################################################
 # Build a runtime image.
 ################################################################################
-FROM alpine:3.9
+FROM alpine:3.13.5
 
 # Override the default false.
 # https://caddyserver.com/blog/caddy-0_10_10-and-pricing
