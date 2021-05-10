@@ -27,29 +27,12 @@ cgi /hellocgi /cgi-bin/hello
 # Then we can conditionally rewrite paths to this URL.
 status 405 /forbidden
 
-upload /uploads {
-  to "/var/www"
-}
-
-# Allow /uploads to use the verbs it needs.
-rewrite /uploads {
-  if {method} not GET
-  if {method} not PUT
-  if {method} not POST
-  if {method} not MOVE
-  if {method} not DELETE
-
-  if_op and
-  to /forbidden
-}
-
 # All other URLs are only allowed to GET.
 #
 # Use https://www.htbridge.com/websec/
 # to check security of public sites.
 rewrite {
   if {method} not GET
-  if {path} not_match ^/uploads
 
   if_op and
   to /forbidden
